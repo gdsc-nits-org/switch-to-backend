@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>signUp form</div>
+
+    <form id="loginForm" action="">
+        <input type="text" name="username">
+        <input type="password" name="password">
+
+        <button id="submitBtn">signUp</button>
+    </form>
+
+    <script>
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            const form = document.getElementById("loginForm");
+
+            const body =  {
+                username: form.username.value,
+                password: form.password.value,
+            }
+            await fetch("http://localhost:3000/auth/signUp",{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"   
+                },
+                body: JSON.stringify(body),
+            })
+
+            console.log(body);
+        }
+
+        document.getElementById("submitBtn").addEventListener("click",handleSubmit);
+    </script>
+</body>
+</html>
